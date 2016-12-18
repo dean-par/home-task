@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A401E99C1E03DF6500DAD827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E99B1E03DF6500DAD827 /* AppDelegate.swift */; };
+		A401E99E1E03DF6500DAD827 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E99D1E03DF6500DAD827 /* ViewController.swift */; };
+		A401E9A11E03DF6500DAD827 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A401E99F1E03DF6500DAD827 /* Main.storyboard */; };
+		A401E9A31E03DF6500DAD827 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A401E9A21E03DF6500DAD827 /* Assets.xcassets */; };
+		A401E9A61E03DF6500DAD827 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A401E9A41E03DF6500DAD827 /* LaunchScreen.storyboard */; };
+		A401E9B11E03DF6500DAD827 /* CanvaTakeHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E9B01E03DF6500DAD827 /* CanvaTakeHomeTests.swift */; };
+		A401E9BC1E03DF6500DAD827 /* CanvaTakeHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E9BB1E03DF6500DAD827 /* CanvaTakeHomeUITests.swift */; };
+		A401E9DB1E03E21C00DAD827 /* MazeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E9DA1E03E21C00DAD827 /* MazeManager.swift */; };
+		A401E9DD1E03E6C100DAD827 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A401E9DC1E03E6C100DAD827 /* RoomViewController.swift */; };
+		A4D05F641E0619A700013761 /* TakeHomeTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D05F631E0619A700013761 /* TakeHomeTask.framework */; };
+		A4D05F651E061A6C00013761 /* TakeHomeTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D05F631E0619A700013761 /* TakeHomeTask.framework */; };
+		A4D05F661E061A6C00013761 /* TakeHomeTask.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A4D05F631E0619A700013761 /* TakeHomeTask.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A401E9AD1E03DF6500DAD827 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A401E9901E03DF6500DAD827 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A401E9971E03DF6500DAD827;
+			remoteInfo = CanvaTakeHome;
+		};
+		A401E9B81E03DF6500DAD827 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A401E9901E03DF6500DAD827 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A401E9971E03DF6500DAD827;
+			remoteInfo = CanvaTakeHome;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A4D05F671E061A6C00013761 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A4D05F661E061A6C00013761 /* TakeHomeTask.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A401E9981E03DF6500DAD827 /* CanvaTakeHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanvaTakeHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A401E99B1E03DF6500DAD827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A401E99D1E03DF6500DAD827 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A401E9A01E03DF6500DAD827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A401E9A21E03DF6500DAD827 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A401E9A51E03DF6500DAD827 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A401E9A71E03DF6500DAD827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A401E9AC1E03DF6500DAD827 /* CanvaTakeHomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvaTakeHomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A401E9B01E03DF6500DAD827 /* CanvaTakeHomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaTakeHomeTests.swift; sourceTree = "<group>"; };
+		A401E9B21E03DF6500DAD827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A401E9B71E03DF6500DAD827 /* CanvaTakeHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvaTakeHomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A401E9BB1E03DF6500DAD827 /* CanvaTakeHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvaTakeHomeUITests.swift; sourceTree = "<group>"; };
+		A401E9BD1E03DF6600DAD827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A401E9DA1E03E21C00DAD827 /* MazeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MazeManager.swift; path = Model/MazeManager.swift; sourceTree = "<group>"; };
+		A401E9DC1E03E6C100DAD827 /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		A4D05F631E0619A700013761 /* TakeHomeTask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TakeHomeTask.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A401E9951E03DF6500DAD827 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4D05F641E0619A700013761 /* TakeHomeTask.framework in Frameworks */,
+				A4D05F651E061A6C00013761 /* TakeHomeTask.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9A91E03DF6500DAD827 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9B41E03DF6500DAD827 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A401E98F1E03DF6500DAD827 = {
+			isa = PBXGroup;
+			children = (
+				A401E99A1E03DF6500DAD827 /* CanvaTakeHome */,
+				A401E9AF1E03DF6500DAD827 /* CanvaTakeHomeTests */,
+				A401E9BA1E03DF6500DAD827 /* CanvaTakeHomeUITests */,
+				A401E9991E03DF6500DAD827 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A401E9991E03DF6500DAD827 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A401E9981E03DF6500DAD827 /* CanvaTakeHome.app */,
+				A401E9AC1E03DF6500DAD827 /* CanvaTakeHomeTests.xctest */,
+				A401E9B71E03DF6500DAD827 /* CanvaTakeHomeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A401E99A1E03DF6500DAD827 /* CanvaTakeHome */ = {
+			isa = PBXGroup;
+			children = (
+				A401E9D41E03E1A400DAD827 /* Model */,
+				A401E9D81E03E1F000DAD827 /* Controller */,
+				A401E9D91E03E1FA00DAD827 /* View */,
+				A401E9DA1E03E21C00DAD827 /* MazeManager.swift */,
+				A401E99B1E03DF6500DAD827 /* AppDelegate.swift */,
+				A401E99D1E03DF6500DAD827 /* ViewController.swift */,
+				A401E99F1E03DF6500DAD827 /* Main.storyboard */,
+				A401E9A21E03DF6500DAD827 /* Assets.xcassets */,
+				A401E9A41E03DF6500DAD827 /* LaunchScreen.storyboard */,
+				A401E9A71E03DF6500DAD827 /* Info.plist */,
+				A4D05F631E0619A700013761 /* TakeHomeTask.framework */,
+			);
+			path = CanvaTakeHome;
+			sourceTree = "<group>";
+		};
+		A401E9AF1E03DF6500DAD827 /* CanvaTakeHomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A401E9B01E03DF6500DAD827 /* CanvaTakeHomeTests.swift */,
+				A401E9B21E03DF6500DAD827 /* Info.plist */,
+			);
+			path = CanvaTakeHomeTests;
+			sourceTree = "<group>";
+		};
+		A401E9BA1E03DF6500DAD827 /* CanvaTakeHomeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A401E9BB1E03DF6500DAD827 /* CanvaTakeHomeUITests.swift */,
+				A401E9BD1E03DF6600DAD827 /* Info.plist */,
+			);
+			path = CanvaTakeHomeUITests;
+			sourceTree = "<group>";
+		};
+		A401E9D41E03E1A400DAD827 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A401E9D81E03E1F000DAD827 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A401E9DC1E03E6C100DAD827 /* RoomViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A401E9D91E03E1FA00DAD827 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A401E9971E03DF6500DAD827 /* CanvaTakeHome */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A401E9C01E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHome" */;
+			buildPhases = (
+				A401E9941E03DF6500DAD827 /* Sources */,
+				A401E9951E03DF6500DAD827 /* Frameworks */,
+				A401E9961E03DF6500DAD827 /* Resources */,
+				A4D05F671E061A6C00013761 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CanvaTakeHome;
+			productName = CanvaTakeHome;
+			productReference = A401E9981E03DF6500DAD827 /* CanvaTakeHome.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A401E9AB1E03DF6500DAD827 /* CanvaTakeHomeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A401E9C31E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHomeTests" */;
+			buildPhases = (
+				A401E9A81E03DF6500DAD827 /* Sources */,
+				A401E9A91E03DF6500DAD827 /* Frameworks */,
+				A401E9AA1E03DF6500DAD827 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A401E9AE1E03DF6500DAD827 /* PBXTargetDependency */,
+			);
+			name = CanvaTakeHomeTests;
+			productName = CanvaTakeHomeTests;
+			productReference = A401E9AC1E03DF6500DAD827 /* CanvaTakeHomeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A401E9B61E03DF6500DAD827 /* CanvaTakeHomeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A401E9C61E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHomeUITests" */;
+			buildPhases = (
+				A401E9B31E03DF6500DAD827 /* Sources */,
+				A401E9B41E03DF6500DAD827 /* Frameworks */,
+				A401E9B51E03DF6500DAD827 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A401E9B91E03DF6500DAD827 /* PBXTargetDependency */,
+			);
+			name = CanvaTakeHomeUITests;
+			productName = CanvaTakeHomeUITests;
+			productReference = A401E9B71E03DF6500DAD827 /* CanvaTakeHomeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A401E9901E03DF6500DAD827 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Dean Parreno";
+				TargetAttributes = {
+					A401E9971E03DF6500DAD827 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					A401E9AB1E03DF6500DAD827 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A401E9971E03DF6500DAD827;
+					};
+					A401E9B61E03DF6500DAD827 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A401E9971E03DF6500DAD827;
+					};
+				};
+			};
+			buildConfigurationList = A401E9931E03DF6500DAD827 /* Build configuration list for PBXProject "CanvaTakeHome" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A401E98F1E03DF6500DAD827;
+			productRefGroup = A401E9991E03DF6500DAD827 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A401E9971E03DF6500DAD827 /* CanvaTakeHome */,
+				A401E9AB1E03DF6500DAD827 /* CanvaTakeHomeTests */,
+				A401E9B61E03DF6500DAD827 /* CanvaTakeHomeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A401E9961E03DF6500DAD827 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A401E9A61E03DF6500DAD827 /* LaunchScreen.storyboard in Resources */,
+				A401E9A31E03DF6500DAD827 /* Assets.xcassets in Resources */,
+				A401E9A11E03DF6500DAD827 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9AA1E03DF6500DAD827 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9B51E03DF6500DAD827 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A401E9941E03DF6500DAD827 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A401E9DB1E03E21C00DAD827 /* MazeManager.swift in Sources */,
+				A401E99E1E03DF6500DAD827 /* ViewController.swift in Sources */,
+				A401E99C1E03DF6500DAD827 /* AppDelegate.swift in Sources */,
+				A401E9DD1E03E6C100DAD827 /* RoomViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9A81E03DF6500DAD827 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A401E9B11E03DF6500DAD827 /* CanvaTakeHomeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A401E9B31E03DF6500DAD827 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A401E9BC1E03DF6500DAD827 /* CanvaTakeHomeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A401E9AE1E03DF6500DAD827 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A401E9971E03DF6500DAD827 /* CanvaTakeHome */;
+			targetProxy = A401E9AD1E03DF6500DAD827 /* PBXContainerItemProxy */;
+		};
+		A401E9B91E03DF6500DAD827 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A401E9971E03DF6500DAD827 /* CanvaTakeHome */;
+			targetProxy = A401E9B81E03DF6500DAD827 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A401E99F1E03DF6500DAD827 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A401E9A01E03DF6500DAD827 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A401E9A41E03DF6500DAD827 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A401E9A51E03DF6500DAD827 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A401E9BE1E03DF6600DAD827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A401E9BF1E03DF6600DAD827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A401E9C11E03DF6600DAD827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CanvaTakeHome/Frameworks/**",
+					"$(PROJECT_DIR)/CanvaTakeHome",
+				);
+				INFOPLIST_FILE = CanvaTakeHome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHome;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A401E9C21E03DF6600DAD827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CanvaTakeHome/Frameworks/**",
+					"$(PROJECT_DIR)/CanvaTakeHome",
+				);
+				INFOPLIST_FILE = CanvaTakeHome/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHome;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A401E9C41E03DF6600DAD827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CanvaTakeHomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CanvaTakeHome.app/CanvaTakeHome";
+			};
+			name = Debug;
+		};
+		A401E9C51E03DF6600DAD827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CanvaTakeHomeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CanvaTakeHome.app/CanvaTakeHome";
+			};
+			name = Release;
+		};
+		A401E9C71E03DF6600DAD827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = CanvaTakeHomeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHomeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CanvaTakeHome;
+			};
+			name = Debug;
+		};
+		A401E9C81E03DF6600DAD827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = CanvaTakeHomeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dean.CanvaTakeHomeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CanvaTakeHome;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A401E9931E03DF6500DAD827 /* Build configuration list for PBXProject "CanvaTakeHome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A401E9BE1E03DF6600DAD827 /* Debug */,
+				A401E9BF1E03DF6600DAD827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A401E9C01E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHome" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A401E9C11E03DF6600DAD827 /* Debug */,
+				A401E9C21E03DF6600DAD827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A401E9C31E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHomeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A401E9C41E03DF6600DAD827 /* Debug */,
+				A401E9C51E03DF6600DAD827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A401E9C61E03DF6600DAD827 /* Build configuration list for PBXNativeTarget "CanvaTakeHomeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A401E9C71E03DF6600DAD827 /* Debug */,
+				A401E9C81E03DF6600DAD827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A401E9901E03DF6500DAD827 /* Project object */;
+}
