@@ -13,19 +13,24 @@ class RoomViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     var roomIds: [RoomId] = []
-    var loadedStartingRoom = false
-    var adjacentTile: UIImageView?
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         loadStartingRoom()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
     func loadStartingRoom() {
         MazeManager.sharedInstance.fetchStartRoom { (roomOrError) in
             do {
                 let roomIdentifier = try roomOrError()
-                print(roomIdentifier)
+                //print(roomIdentifier)
                 self.loadRoomsRecursively(roomIdentifier: roomIdentifier)
             } catch {
                 print(error)
@@ -38,17 +43,38 @@ class RoomViewController: UIViewController {
             do {
                 let room = try room()
                 if self.roomIds.isEmpty || !self.roomIds.contains(roomIdentifier) {
-                    self.loadedStartingRoom = true
-                    print(room.tileURL)
-                    self.imageView!.downloadedFrom(url: room.tileURL)
-                    //
-                    self.adjacentTile?.downloadedFrom(url: room.tileURL)
-                    self.adjacentTile?.frame = self.imageView.frame
-                    self.view.addSubview(self.adjacentTile!)
-                    self.view.addConstraint(NSLayoutConstraint(item: self.adjacentTile!, attribute: .bottom, relatedBy: .equal, toItem: self.imageView, attribute: .top, multiplier: 1.0, constant: 0.0))
+                    print(roomIdentifier)
                     
+                    let tileImage = UIImageView.init(frame: CGRect(x: 0.0, y: 0.0, width: 30, height: 30))
+                    tileImage.downloadedFrom(url: room.tileURL)
+                   
+                    DispatchQueue.main.async() { () -> Void in
+                        self.view.addSubview(tileImage)
+
                     }
                     
+//                    let tileImage = UIImageView.init()
+//                    self.imageView.downloadedFrom(url: room.tileURL, tileImage:)
+//                    self.imageView = tileImage
+//                    self.view.addConstraint(NSLayoutConstraint(item: tileImage,
+//                                                               attribute: .bottom,
+//                                                               relatedBy: .equal,
+//                                                               toItem: self.imageView,
+//                                                               attribute: .top,
+//                                                               multiplier: 1.0,
+//                                                               constant: 0.0))
+
+                   // self.imageView.frame = self.view.bounds
+                    
+                    
+//                    self.view.addSubview(adjacentTile)
+//                    
+//                    DispatchQueue.main.async() { () -> Void in
+//                        let tileImage = UIImageView.init(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+//                        tileImage.downloadedFrom(url: room.tileURL)
+//                        self.imageView = tileImage
+//                    }
+//                    
                     
                     
                     // Adds roomID to array
@@ -60,34 +86,39 @@ class RoomViewController: UIViewController {
                     if let room = room.connections[.east] { adjacentRooms.append(room) }
                     if let room = room.connections[.west] { adjacentRooms.append(room) }
                     
+                    // Add constraints to tile based on connections
+                    
+                    
                     for adjacentRoom in adjacentRooms {
                         switch adjacentRoom {
                         case .Room(let adjacentRoomId):
                             self.loadRoomsRecursively(roomIdentifier: adjacentRoomId)
-                        case .LockedRoom: break
+                        case .LockedRoom(let lockedRoom):
+                            self.loadRoomsRecursively(roomIdentifier: self.unlockedRoom(lockedRoomId: lockedRoom))
                         }
                     }
-                
+                }
             } catch {
                 print(error)
             }
         })
+        self.view.setNeedsLayout()
     }
+    
     
     func placeTile() {
         
     }
     
+    func unlockedRoom(lockedRoomId: LockId) -> RoomId {
+        return MazeManager.sharedInstance.unlockRoom(lockId: lockedRoomId)
+    }
     
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
- 
 }
 
 extension UIImageView {
@@ -103,10 +134,11 @@ extension UIImageView {
             DispatchQueue.main.async() { () -> Void in
                 self.image = image
             }
-            }.resume()
+        }.resume()
     }
     func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloadedFrom(url: url, contentMode: mode)
     }
 }
+
