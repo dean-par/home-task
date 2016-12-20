@@ -9,11 +9,24 @@
 import UIKit
 import TakeHomeTask
 
+
+class RoomConnection {
+    var room: RoomId
+    var connection: Connection
+    
+    init(room: RoomId, connection: Connection) {
+        self.room = room
+        self.connection = connection
+    }
+
+}
+
 class RoomViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     var roomIds: [RoomId] = []
-    
+    var x: CGFloat = 0.0
+    var y: CGFloat = 0.0
 
     
     override func viewDidLoad() {
@@ -45,10 +58,20 @@ class RoomViewController: UIViewController {
                 if self.roomIds.isEmpty || !self.roomIds.contains(roomIdentifier) {
                     print(roomIdentifier)
                     
-                    let tileImage = UIImageView.init(frame: CGRect(x: 0.0, y: 0.0, width: 30, height: 30))
+                    let tileImage = UIImageView.init(frame: CGRect(x: self.x, y: self.y, width: 30, height: 30))
+                    self.x += 30.0
+                    self.y += 30.0
+
                     tileImage.downloadedFrom(url: room.tileURL)
                    
                     DispatchQueue.main.async() { () -> Void in
+//                        self.view.addConstraint(NSLayoutConstraint(item: tileImage,
+//                                                                       attribute: .bottom,
+//                                                                       relatedBy: .equal,
+//                                                                       toItem: self.view,
+//                                                                       attribute: .top,
+//                                                                       multiplier: 1.0,
+//                                                                       constant: 0.0))
                         self.view.addSubview(tileImage)
 
                     }
@@ -56,13 +79,6 @@ class RoomViewController: UIViewController {
 //                    let tileImage = UIImageView.init()
 //                    self.imageView.downloadedFrom(url: room.tileURL, tileImage:)
 //                    self.imageView = tileImage
-//                    self.view.addConstraint(NSLayoutConstraint(item: tileImage,
-//                                                               attribute: .bottom,
-//                                                               relatedBy: .equal,
-//                                                               toItem: self.imageView,
-//                                                               attribute: .top,
-//                                                               multiplier: 1.0,
-//                                                               constant: 0.0))
 
                    // self.imageView.frame = self.view.bounds
                     
