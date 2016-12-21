@@ -11,10 +11,10 @@ import TakeHomeTask
 
 
 class RoomConnection {
-    var room: RoomId
+    var room: String
     var connection: Connection
     
-    init(room: RoomId, connection: Connection) {
+    init(room: String, connection: Connection) {
         self.room = room
         self.connection = connection
     }
@@ -23,10 +23,14 @@ class RoomConnection {
 
 class RoomViewController: UIViewController {
     
+    var roomRelativeDirection = [RoomId:String]()
+
+    
     @IBOutlet weak var imageView: UIImageView!
     var roomIds: [RoomId] = []
     var x: CGFloat = 0.0
-    var y: CGFloat = 0.0
+    var y: CGFloat = 400.0
+    var tileSize: CGFloat = 15.0
 
     
     override func viewDidLoad() {
@@ -44,24 +48,43 @@ class RoomViewController: UIViewController {
             do {
                 let roomIdentifier = try roomOrError()
                 //print(roomIdentifier)
-                self.loadRoomsRecursively(roomIdentifier: roomIdentifier)
+                
+                // TODO: update initial room position
+                self.loadRoomsRecursively(roomIdentifier: roomIdentifier, relativeDirection: .north, relatedTileImage: self.imageView )
             } catch {
                 print(error)
             }
         }
     }
     
-    func loadRoomsRecursively(roomIdentifier: RoomId) {
+    func loadRoomsRecursively(roomIdentifier: RoomId,
+                              relativeDirection: Direction,
+                              relatedTileImage: UIImageView) {
         MazeManager.sharedInstance.fetchRoom(roomId: roomIdentifier, callback: { (room) in
             do {
                 let room = try room()
                 if self.roomIds.isEmpty || !self.roomIds.contains(roomIdentifier) {
                     print(roomIdentifier)
                     
-                    let tileImage = UIImageView.init(frame: CGRect(x: self.x, y: self.y, width: 30, height: 30))
-                    self.x += 30.0
-                    self.y += 30.0
+                    
+                    
+                    switch relativeDirection {
+                    case .north :
+                        self.x = relatedTileImage.frame.origin.x
+                        self.y = relatedTileImage.frame.origin.y + self.tileSize
+                    case .south:
+                        self.x = relatedTileImage.frame.origin.x
+                        self.y = relatedTileImage.frame.origin.y - self.tileSize
+                    case .east:
+                        self.x = relatedTileImage.frame.origin.x + self.tileSize
+                        self.y = relatedTileImage.frame.origin.y
+                    case .west:
+                        self.x = relatedTileImage.frame.origin.x - self.tileSize
+                        self.y = relatedTileImage.frame.origin.y
+                    }
+                    let tileImage = UIImageView.init(frame: CGRect(x: self.x, y: self.y, width: self.tileSize, height: self.tileSize))
 
+                   
                     tileImage.downloadedFrom(url: room.tileURL)
                    
                     DispatchQueue.main.async() { () -> Void in
@@ -95,22 +118,19 @@ class RoomViewController: UIViewController {
                     
                     // Adds roomID to array
                     self.roomIds.append(roomIdentifier)
-                      
-                    var adjacentRooms: [Connection] = []
-                    if let room = room.connections[.north] { adjacentRooms.append(room) }
-                    if let room = room.connections[.south] { adjacentRooms.append(room) }
-                    if let room = room.connections[.east] { adjacentRooms.append(room) }
-                    if let room = room.connections[.west] { adjacentRooms.append(room) }
                     
-                    // Add constraints to tile based on connections
-                    
-                    
-                    for adjacentRoom in adjacentRooms {
-                        switch adjacentRoom {
+                    // Iterate through direction and connections
+                    for (direction, connection) in room.connections {
+                        print(direction, connection)
+                        switch connection {
                         case .Room(let adjacentRoomId):
-                            self.loadRoomsRecursively(roomIdentifier: adjacentRoomId)
+                            self.loadRoomsRecursively(roomIdentifier: adjacentRoomId,
+                                                        relativeDirection: direction,
+                                                        relatedTileImage: tileImage)
                         case .LockedRoom(let lockedRoom):
-                            self.loadRoomsRecursively(roomIdentifier: self.unlockedRoom(lockedRoomId: lockedRoom))
+                            self.loadRoomsRecursively(roomIdentifier: self.unlockedRoom(lockedRoomId: lockedRoom),
+                                                        relativeDirection: direction,
+                                                        relatedTileImage: tileImage)
                         }
                     }
                 }
@@ -120,7 +140,6 @@ class RoomViewController: UIViewController {
         })
         self.view.setNeedsLayout()
     }
-    
     
     func placeTile() {
         

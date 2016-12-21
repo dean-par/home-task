@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,10 +25,22 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6g-HK-PUs">
-                                        <rect key="frame" x="15" y="15" width="345" height="275"/>
+                                        <rect key="frame" x="15" y="15" width="345" height="500"/>
+                                        <subviews>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dEy-VI-7QG">
+                                                <rect key="frame" x="0.0" y="0.0" width="345" height="500"/>
+                                                <connections>
+                                                    <segue destination="8jX-Pn-LAs" kind="embed" id="4Zv-2n-gTJ"/>
+                                                </connections>
+                                            </containerView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="275" id="kOi-5l-Quk"/>
+                                            <constraint firstItem="dEy-VI-7QG" firstAttribute="top" secondItem="O6g-HK-PUs" secondAttribute="top" id="41h-cu-2oe"/>
+                                            <constraint firstItem="dEy-VI-7QG" firstAttribute="leading" secondItem="O6g-HK-PUs" secondAttribute="leading" id="Am3-bP-2dY"/>
+                                            <constraint firstAttribute="trailing" secondItem="dEy-VI-7QG" secondAttribute="trailing" id="Y9f-LB-olw"/>
+                                            <constraint firstAttribute="bottom" secondItem="dEy-VI-7QG" secondAttribute="bottom" id="dwN-3W-9Co"/>
+                                            <constraint firstAttribute="height" constant="500" id="kOi-5l-Quk"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-61-CGe">
@@ -48,13 +60,6 @@
                                             <constraint firstItem="w2g-VN-ckJ" firstAttribute="centerX" secondItem="t8z-61-CGe" secondAttribute="centerX" id="jri-bK-9c0"/>
                                         </constraints>
                                     </view>
-                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEy-VI-7QG">
-                                        <rect key="frame" x="38" y="180" width="329" height="259"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <connections>
-                                            <segue destination="8jX-Pn-LAs" kind="embed" id="4Zv-2n-gTJ"/>
-                                        </connections>
-                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -89,7 +94,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HUM-Fi-Qod"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ieW-jM-Zjj">
-                        <rect key="frame" x="0.0" y="0.0" width="329" height="259"/>
+                        <rect key="frame" x="0.0" y="0.0" width="345" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wI-Dr-Hhf">
