@@ -23,14 +23,11 @@ class RoomConnection {
 
 class RoomViewController: UIViewController {
     
-    var roomRelativeDirection = [RoomId:String]()
-
-    
     @IBOutlet weak var imageView: UIImageView!
     var roomIds: [RoomId] = []
     var x: CGFloat = 0.0
     var y: CGFloat = 400.0
-    var tileSize: CGFloat = 15.0
+    var tileSize: CGFloat = 7.0
 
     
     override func viewDidLoad() {
@@ -66,28 +63,39 @@ class RoomViewController: UIViewController {
                 if self.roomIds.isEmpty || !self.roomIds.contains(roomIdentifier) {
                     print(roomIdentifier)
                     
-                    
-                    
+
                     switch relativeDirection {
                     case .north :
                         self.x = relatedTileImage.frame.origin.x
                         self.y = relatedTileImage.frame.origin.y + self.tileSize
+                        if self.y <= self.view.frame.origin.y {
+                            self.shiftTiles(direction: .north)
+                        }
                     case .south:
                         self.x = relatedTileImage.frame.origin.x
                         self.y = relatedTileImage.frame.origin.y - self.tileSize
+                        if self.y > self.view.frame.origin.y + self.view.frame.height {
+                          //  self.shiftTiles(direction: .south)
+                        }
                     case .east:
                         self.x = relatedTileImage.frame.origin.x + self.tileSize
                         self.y = relatedTileImage.frame.origin.y
+                        if self.x > self.view.frame.origin.x + self.view.frame.width {
+                           // self.shiftTiles(direction: .east)
+                        }
                     case .west:
                         self.x = relatedTileImage.frame.origin.x - self.tileSize
                         self.y = relatedTileImage.frame.origin.y
+                        if self.x <= self.view.frame.origin.x {
+                            self.shiftTiles(direction: .west)
+                        }
                     }
+                   
                     let tileImage = UIImageView.init(frame: CGRect(x: self.x, y: self.y, width: self.tileSize, height: self.tileSize))
+                    tileImage.downloadedFrom(url: room.tileURL)
+                    self.view.addSubview(tileImage)
 
                    
-                    tileImage.downloadedFrom(url: room.tileURL)
-                   
-                    DispatchQueue.main.async() { () -> Void in
 //                        self.view.addConstraint(NSLayoutConstraint(item: tileImage,
 //                                                                       attribute: .bottom,
 //                                                                       relatedBy: .equal,
@@ -97,23 +105,6 @@ class RoomViewController: UIViewController {
 //                                                                       constant: 0.0))
                         self.view.addSubview(tileImage)
 
-                    }
-                    
-//                    let tileImage = UIImageView.init()
-//                    self.imageView.downloadedFrom(url: room.tileURL, tileImage:)
-//                    self.imageView = tileImage
-
-                   // self.imageView.frame = self.view.bounds
-                    
-                    
-//                    self.view.addSubview(adjacentTile)
-//                    
-//                    DispatchQueue.main.async() { () -> Void in
-//                        let tileImage = UIImageView.init(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
-//                        tileImage.downloadedFrom(url: room.tileURL)
-//                        self.imageView = tileImage
-//                    }
-//                    
                     
                     
                     // Adds roomID to array
@@ -141,7 +132,25 @@ class RoomViewController: UIViewController {
         self.view.setNeedsLayout()
     }
     
-    func placeTile() {
+    func shiftTiles(direction: Direction) {
+        DispatchQueue.main.async() { () -> Void in
+
+            for subview in self.view.subviews {
+                switch direction {
+                case .north:
+                    subview.frame.origin.y += self.tileSize
+                case .south:
+                    subview.frame.origin.y -= self.tileSize
+                case .east:
+                    subview.frame.origin.x -= self.tileSize
+                case .west:
+                    subview.frame.origin.x += self.tileSize
+               // case .south: for subview in self.view.subviews {subview.frame.origin.y -= self.tileSize}
+                //case .east: for subview in self.view.subviews {subview.frame.origin.x -= self.tileSize}
+                //case .west: for subview in self.view.subviews {subview.frame.origin.x += self.tileSize}
+                }
+            }
+        }
         
     }
     
