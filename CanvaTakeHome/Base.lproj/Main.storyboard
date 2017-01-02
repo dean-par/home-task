@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -82,20 +81,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ujg-8P-mea">
-                                <rect key="frame" x="121" y="125" width="100" height="100"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujg-8P-mea">
+                                <rect key="frame" x="0.0" y="0.0" width="59" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ujg-8P-mea" secondAttribute="height" multiplier="1:1" id="shE-L9-wEV"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="HUM-Fi-Qod" firstAttribute="top" secondItem="Ujg-8P-mea" secondAttribute="bottom" constant="125" id="4aF-H4-V13"/>
-                            <constraint firstItem="Ujg-8P-mea" firstAttribute="top" secondItem="MgV-HK-YYl" secondAttribute="bottom" constant="125" id="Dnh-Nh-guX"/>
-                            <constraint firstItem="Ujg-8P-mea" firstAttribute="leading" secondItem="ieW-jM-Zjj" secondAttribute="leadingMargin" constant="105" id="n6n-3X-HJH"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="squareView" destination="Ujg-8P-mea" id="DKG-5u-iZH"/>
@@ -103,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBe-BO-gCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1125.5999999999999" y="138.0809595202399"/>
+            <point key="canvasLocation" x="1125.5999999999999" y="137.6311844077961"/>
         </scene>
     </scenes>
     <resources>

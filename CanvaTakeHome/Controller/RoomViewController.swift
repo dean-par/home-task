@@ -13,6 +13,7 @@ class RoomViewController: UIViewController {
     
     @IBOutlet weak var squareView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    let initialTile = UIImageView()
     var roomIds: [RoomId] = []
     var x: CGFloat = 0.0
     var y: CGFloat = 400.0
@@ -21,6 +22,59 @@ class RoomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // initialTile.frame = CGRect(x: 0.0, y: 0.0, width: 12, height: 12)
+        initialTile.backgroundColor = UIColor.red
+        initialTile.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(initialTile)
+
+        
+        let width = NSLayoutConstraint(item: initialTile,
+                                       attribute: .width,
+                                       relatedBy: .equal,
+                                       toItem: self.view,
+                                       attribute: .width,
+                                       multiplier: 0.10,
+                                       constant: 0.0)
+        
+        
+        let aspectRatio = NSLayoutConstraint(item: initialTile,
+                                             attribute: .height,
+                                             relatedBy: .equal,
+                                             toItem: initialTile,
+                                             attribute: .width,
+                                             multiplier: 1.0,
+                                             constant: 0.0)
+        
+        
+        let yConstraint = NSLayoutConstraint(item: initialTile,
+                                             attribute: .centerY,
+                                             relatedBy: .equal,
+                                             toItem: self.view,
+                                             attribute: .centerY,
+                                             multiplier: 1.0,
+                                             constant: 0.0)
+        
+        let xConstraint = NSLayoutConstraint(item: initialTile,
+                                             attribute: .centerX,
+                                             relatedBy: .equal,
+                                             toItem: self.view,
+                                             attribute: .centerX,
+                                             multiplier: 1.0,
+                                             constant: 0.0)
+        
+        width.priority = 100
+        yConstraint.priority = 100
+        xConstraint.priority = 100
+
+
+        
+        self.view.addConstraint(width)
+        self.view.addConstraint(aspectRatio)
+        self.view.addConstraint(xConstraint)
+        self.view.addConstraint(yConstraint)
+        
+        
         loadStartingRoom()
     }
     
@@ -32,53 +86,60 @@ class RoomViewController: UIViewController {
         MazeManager.sharedInstance.fetchStartRoom { (roomOrError) in
             do {
                 let roomIdentifier = try roomOrError()
-                self.squareView.translatesAutoresizingMaskIntoConstraints = false
-                let newView = UIView()
-                newView.translatesAutoresizingMaskIntoConstraints = false
-                self.view.addSubview(newView)
+                
+                
+//// SAMPLE of working AutoLayout Contrants
+                let newTile = UIImageView()
+                newTile.translatesAutoresizingMaskIntoConstraints = false
+                self.view.addSubview(newTile)
 
-                newView.backgroundColor = UIColor.green
+                newTile.backgroundColor = UIColor.green
                 
        
-                let width = NSLayoutConstraint(item: newView,
+
+                
+                let width = NSLayoutConstraint(item: newTile,
                                                      attribute: .width,
                                                      relatedBy: .equal,
-                                                     toItem: self.squareView,
+                                                     toItem: self.initialTile,
                                                      attribute: .width,
                                                      multiplier: 1.0,
                                                      constant: 0.0)
                 
-                let height = NSLayoutConstraint(item: newView,
-                                               attribute: .height,
-                                               relatedBy: .equal,
-                                               toItem: self.squareView,
-                                               attribute: .height,
-                                               multiplier: 1.0,
-                                               constant: 0.0)
+                let aspectRatio = NSLayoutConstraint(item: newTile,
+                                                        attribute: .height,
+                                                        relatedBy: .equal,
+                                                        toItem: newTile,
+                                                        attribute: .width,
+                                                        multiplier: 1.0,
+                                                        constant: 0.0)
 
                 
-                let yConstraint = NSLayoutConstraint(item: newView,
+                let yConstraint = NSLayoutConstraint(item: newTile,
                                                      attribute: .bottom,
                                                      relatedBy: .equal,
-                                                     toItem: self.squareView,
+                                                     toItem: self.initialTile,
                                                      attribute: .top,
                                                      multiplier: 1.0,
                                                      constant: 0.0)
                 
-                let xConstraint = NSLayoutConstraint(item: newView,
+                let xConstraint = NSLayoutConstraint(item: newTile,
                                                      attribute: .leadingMargin,
                                                      relatedBy: .equal,
-                                                     toItem: self.squareView,
+                                                     toItem: self.initialTile,
                                                      attribute: .leadingMargin,
                                                      multiplier: 1.0,
                                                      constant: 0.0)
              
                 self.view.addConstraint(width)
-                self.view.addConstraint(height)
+                self.view.addConstraint(aspectRatio)
                 self.view.addConstraint(xConstraint)
                 self.view.addConstraint(yConstraint)
 
-
+/////////////////
+                
+                
+                
                 // TODO: update initial room position
                 //self.loadRoomsRecursively(roomIdentifier: roomIdentifier, relativeDirection: .north, relatedTileImage: self.imageView )
                 
