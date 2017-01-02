@@ -9,30 +9,18 @@
 import UIKit
 import TakeHomeTask
 
-
-class RoomConnection {
-    var room: String
-    var connection: Connection
-    
-    init(room: String, connection: Connection) {
-        self.room = room
-        self.connection = connection
-    }
-
-}
-
 class RoomViewController: UIViewController {
     
+    @IBOutlet weak var squareView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     var roomIds: [RoomId] = []
     var x: CGFloat = 0.0
     var y: CGFloat = 400.0
-    var tileSize: CGFloat = 7.0
+    var tileSize: CGFloat = 10.0
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         loadStartingRoom()
     }
     
@@ -44,10 +32,56 @@ class RoomViewController: UIViewController {
         MazeManager.sharedInstance.fetchStartRoom { (roomOrError) in
             do {
                 let roomIdentifier = try roomOrError()
-                //print(roomIdentifier)
+                self.squareView.translatesAutoresizingMaskIntoConstraints = false
+                let newView = UIView()
+                newView.translatesAutoresizingMaskIntoConstraints = false
+                self.view.addSubview(newView)
+
+                newView.backgroundColor = UIColor.green
                 
+       
+                let width = NSLayoutConstraint(item: newView,
+                                                     attribute: .width,
+                                                     relatedBy: .equal,
+                                                     toItem: self.squareView,
+                                                     attribute: .width,
+                                                     multiplier: 1.0,
+                                                     constant: 0.0)
+                
+                let height = NSLayoutConstraint(item: newView,
+                                               attribute: .height,
+                                               relatedBy: .equal,
+                                               toItem: self.squareView,
+                                               attribute: .height,
+                                               multiplier: 1.0,
+                                               constant: 0.0)
+
+                
+                let yConstraint = NSLayoutConstraint(item: newView,
+                                                     attribute: .bottom,
+                                                     relatedBy: .equal,
+                                                     toItem: self.squareView,
+                                                     attribute: .top,
+                                                     multiplier: 1.0,
+                                                     constant: 0.0)
+                
+                let xConstraint = NSLayoutConstraint(item: newView,
+                                                     attribute: .leadingMargin,
+                                                     relatedBy: .equal,
+                                                     toItem: self.squareView,
+                                                     attribute: .leadingMargin,
+                                                     multiplier: 1.0,
+                                                     constant: 0.0)
+             
+                self.view.addConstraint(width)
+                self.view.addConstraint(height)
+                self.view.addConstraint(xConstraint)
+                self.view.addConstraint(yConstraint)
+
+
                 // TODO: update initial room position
-                self.loadRoomsRecursively(roomIdentifier: roomIdentifier, relativeDirection: .north, relatedTileImage: self.imageView )
+                //self.loadRoomsRecursively(roomIdentifier: roomIdentifier, relativeDirection: .north, relatedTileImage: self.imageView )
+                
             } catch {
                 print(error)
             }
@@ -60,52 +94,43 @@ class RoomViewController: UIViewController {
         MazeManager.sharedInstance.fetchRoom(roomId: roomIdentifier, callback: { (room) in
             do {
                 let room = try room()
-                if self.roomIds.isEmpty || !self.roomIds.contains(roomIdentifier) {
+                 if !self.roomIds.contains(roomIdentifier) {
+
                     print(roomIdentifier)
                     
-
                     switch relativeDirection {
                     case .north :
                         self.x = relatedTileImage.frame.origin.x
-                        self.y = relatedTileImage.frame.origin.y + self.tileSize
+                        self.y = relatedTileImage.frame.origin.y + relatedTileImage.frame.height
                         if self.y <= self.view.frame.origin.y {
                             self.shiftTiles(direction: .north)
                         }
                     case .south:
                         self.x = relatedTileImage.frame.origin.x
-                        self.y = relatedTileImage.frame.origin.y - self.tileSize
+                        self.y = relatedTileImage.frame.origin.y - relatedTileImage.frame.height
                         if self.y > self.view.frame.origin.y + self.view.frame.height {
-                          //  self.shiftTiles(direction: .south)
+                          self.shiftTiles(direction: .south)
                         }
                     case .east:
-                        self.x = relatedTileImage.frame.origin.x + self.tileSize
+                        self.x = relatedTileImage.frame.origin.x + relatedTileImage.frame.width
                         self.y = relatedTileImage.frame.origin.y
                         if self.x > self.view.frame.origin.x + self.view.frame.width {
-                           // self.shiftTiles(direction: .east)
+                           self.shiftTiles(direction: .east)
                         }
                     case .west:
-                        self.x = relatedTileImage.frame.origin.x - self.tileSize
+                        self.x = relatedTileImage.frame.origin.x - relatedTileImage.frame.width
                         self.y = relatedTileImage.frame.origin.y
                         if self.x <= self.view.frame.origin.x {
                             self.shiftTiles(direction: .west)
                         }
                     }
                    
+                    
+                    
                     let tileImage = UIImageView.init(frame: CGRect(x: self.x, y: self.y, width: self.tileSize, height: self.tileSize))
+                    tileImage.translatesAutoresizingMaskIntoConstraints = true
                     tileImage.downloadedFrom(url: room.tileURL)
                     self.view.addSubview(tileImage)
-
-                   
-//                        self.view.addConstraint(NSLayoutConstraint(item: tileImage,
-//                                                                       attribute: .bottom,
-//                                                                       relatedBy: .equal,
-//                                                                       toItem: self.view,
-//                                                                       attribute: .top,
-//                                                                       multiplier: 1.0,
-//                                                                       constant: 0.0))
-                        self.view.addSubview(tileImage)
-
-                    
                     
                     // Adds roomID to array
                     self.roomIds.append(roomIdentifier)
@@ -124,6 +149,9 @@ class RoomViewController: UIViewController {
                                                         relatedTileImage: tileImage)
                         }
                     }
+                } else {
+                    // TODO: handle error.
+
                 }
             } catch {
                 print(error)
@@ -138,18 +166,31 @@ class RoomViewController: UIViewController {
             for subview in self.view.subviews {
                 switch direction {
                 case .north:
-                    subview.frame.origin.y += self.tileSize
+                    subview.frame.origin.y += subview.frame.height
                 case .south:
-                    subview.frame.origin.y -= self.tileSize
-                case .east:
-                    subview.frame.origin.x -= self.tileSize
+                    self.view.setNeedsLayout()
+                 //   subview.frame.origin.y -= self.tileSize
+                case .east:break
+                    self.shrinkTiles()
+                   // subview.frame.origin.x -= self.tileSize
                 case .west:
-                    subview.frame.origin.x += self.tileSize
+                    subview.frame.origin.x += subview.frame.width
                // case .south: for subview in self.view.subviews {subview.frame.origin.y -= self.tileSize}
                 //case .east: for subview in self.view.subviews {subview.frame.origin.x -= self.tileSize}
                 //case .west: for subview in self.view.subviews {subview.frame.origin.x += self.tileSize}
                 }
             }
+        }
+        
+    }
+    
+    func shrinkTiles() {
+        DispatchQueue.main.async() { () -> Void in
+
+        for subview in self.view.subviews {
+            subview.frame.size.width = subview.frame.size.width * 0.7
+            subview.frame.size.height = subview.frame.size.width * 0.7
+        }
         }
         
     }
