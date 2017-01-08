@@ -80,22 +80,12 @@
                     <view key="view" contentMode="scaleToFill" id="ieW-jM-Zjj">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="350"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ujg-8P-mea">
-                                <rect key="frame" x="0.0" y="0.0" width="59" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="squareView" destination="Ujg-8P-mea" id="DKG-5u-iZH"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yBe-BO-gCc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1125.5999999999999" y="137.6311844077961"/>
+            <point key="canvasLocation" x="1125.5999999999999" y="136.73163418290855"/>
         </scene>
     </scenes>
     <resources>
