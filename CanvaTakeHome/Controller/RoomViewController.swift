@@ -18,7 +18,13 @@ class RoomViewController: UIViewController {
     var x: CGFloat = 0.0
     var y: CGFloat = 400.0
     var tileSize: CGFloat = 10.0
+    
+    var leftTopTile = UIView()
+    var leftBottomTile = UIImageView()
+    var righttopTile = UIImageView()
+    var rightBottomTile = UIImageView()
 
+    var topLeftTilePoint = CGPoint()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +39,7 @@ class RoomViewController: UIViewController {
                                        toItem: nil,
                                        attribute: .notAnAttribute,
                                        multiplier: 1.0,
-                                       constant: 12.0)
+                                       constant: 7.0)
         
         
         let aspectRatio = NSLayoutConstraint(item: initialTile,
@@ -62,15 +68,17 @@ class RoomViewController: UIViewController {
                                              multiplier: 1.0,
                                              constant: 0.0)
         
+    
         self.view.addConstraint(width)
         self.view.addConstraint(aspectRatio)
         self.view.addConstraint(xConstraint)
         self.view.addConstraint(yConstraint)
 
         loadStartingRoom()
+        
     }
     
-    func loadStartingRoom() {
+        func loadStartingRoom() {
         MazeManager.sharedInstance.fetchStartRoom { (roomOrError) in
             do {
                 let roomIdentifier = try roomOrError()
@@ -93,6 +101,8 @@ class RoomViewController: UIViewController {
                     print(roomIdentifier)
                     
                     // Create new imageview.
+                    
+
                     let tileImage = UIImageView()
                     tileImage.translatesAutoresizingMaskIntoConstraints = false
                     tileImage.downloadedFrom(url: room.tileURL)
@@ -113,6 +123,8 @@ class RoomViewController: UIViewController {
                                                          attribute: .width,
                                                          multiplier: 1.0,
                                                          constant: 0.0)
+                    self.view.addConstraint(width)
+                    self.view.addConstraint(aspectRatio)
                     
                     if let relatedTileImage = relatedTileImage {
                         switch relativeDirection {
@@ -135,6 +147,22 @@ class RoomViewController: UIViewController {
                             
                             self.view.addConstraint(alignmentConstraint)
                             self.view.addConstraint(marginConstraint)
+                            
+                            self.view.setNeedsLayout()
+                            
+                              //  for constraint in self.view.constraints {
+//                                    if constraint.identifier == "topBoundaryConstraint" {
+//                                        self.shiftTilesDown(tileImage: tileImage)
+//
+//                                    //    self.view.removeConstraint(constraint)
+//                                        
+//                                    }
+//                                }
+                            
+                            
+                            // if tiles reach outside view
+                        
+                            
                         case .south:
                             let alignmentConstraint = NSLayoutConstraint(item: tileImage,
                                                                          attribute: .bottom,
@@ -154,6 +182,9 @@ class RoomViewController: UIViewController {
                             
                             self.view.addConstraint(alignmentConstraint)
                             self.view.addConstraint(marginConstraint)
+                            
+                            self.view.setNeedsLayout()
+
                     
                         case .east:
                             
@@ -175,6 +206,23 @@ class RoomViewController: UIViewController {
                                                                   constant: 0.0)
                         self.view.addConstraint(alignmentConstraint)
                         self.view.addConstraint(marginConstraint)
+                            
+                        self.view.setNeedsLayout()
+                            
+                        if tileImage.frame.origin.y <= self.view.frame.origin.y {
+                            
+                            for constraint in self.view.constraints {
+                                if constraint.identifier == "topBoundaryConstraint" {
+                                    constraint.isActive = false
+                                }
+                                
+                            }
+                            
+                        }
+                            
+                            
+                    
+
    
                         case .west:
 
@@ -196,13 +244,40 @@ class RoomViewController: UIViewController {
                                                                   constant: 0.0)
                         self.view.addConstraint(alignmentConstraint)
                         self.view.addConstraint(marginConstraint)
+                        
+                        self.view.setNeedsLayout()
+
+                        if tileImage.frame.origin.x <= self.view.frame.origin.x {
+
+                            for constraint in self.view.constraints {
+                                if constraint.identifier == "leftBoundaryConstraint" {
+                                    constraint.isActive = false
+                                }
+                                
+                            }
+                            
+                            // if tiles reach outside view
+                          //  self.shiftTiles(tileImage: tileImage)
+                            }
+                        
+                    
                         }
                     }
 
 
-                    self.view.addConstraint(width)
-                    self.view.addConstraint(aspectRatio)
-        
+                    
+//                    if tileImage.frame.origin.y <= 0.0 {
+//                        let boundaryConstraint = NSLayoutConstraint(item: tileImage,
+//                                                                    attribute: .top,
+//                                                                    relatedBy: .equal,
+//                                                                    toItem: self.view,
+//                                                                    attribute: .top,
+//                                                                    multiplier: 1.0,
+//                                                                    constant: 0.0)
+//                        boundaryConstraint.identifier = "topBoundaryConstraint"
+//                        self.view.addConstraint(boundaryConstraint)}
+//
+                    
                     
                     // Adds roomID to array
                     self.roomIds.append(roomIdentifier)
@@ -230,6 +305,34 @@ class RoomViewController: UIViewController {
             }
         })
         self.view.setNeedsLayout()
+    }
+    
+    func shiftTiles(tileImage: UIImageView) {
+        let boundaryConstraint = NSLayoutConstraint(item: tileImage,
+                                                  attribute: .leading,
+                                                  relatedBy: .equal,
+                                                  toItem: self.view,
+                                                  attribute: .leading,
+                                                  multiplier: 1.0,
+                                                  constant: 0.0)
+        boundaryConstraint.identifier = "leftBoundaryConstraint"
+        self.view.addConstraint(boundaryConstraint)
+        self.view.setNeedsLayout()
+
+
+    }
+    
+    func shiftTilesDown(tileImage: UIImageView) {
+        let boundaryConstraint = NSLayoutConstraint(item: tileImage,
+                                                    attribute: .top,
+                                                    relatedBy: .equal,
+                                                    toItem: self.view,
+                                                    attribute: .top,
+                                                    multiplier: 1.0,
+                                                    constant: 0.0)
+        boundaryConstraint.identifier = "topBoundaryConstraint"
+        self.view.addConstraint(boundaryConstraint)
+        
     }
     
     func unlockedRoom(lockedRoomId: LockId) -> RoomId {
